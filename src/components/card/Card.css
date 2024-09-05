@@ -12,6 +12,31 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.349);
+  transition: 0.3s ease-in-out;
+}
+
+.coracao{
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.349);
+  height: 40px;
+  width: 40px;
+  z-index: 1;
+  background-color: white;
+  margin-left: 73%;
+  margin-bottom: 90%;
+}
+
+.cachorro:hover {
+  transform: scale(1.1);
+}
+
+.cachorro:hover .coracao{
+  display: flex;
+  transition: 0.6s ease-in-out;
 }
 
 .cachorro_buttons {
