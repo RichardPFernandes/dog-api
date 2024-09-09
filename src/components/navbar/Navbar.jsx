@@ -10,9 +10,18 @@ export default function Navbar() {
         <h1 className="navbar_title">DogLove</h1>
       </div>
       <div className="navbar_links">
-        <a href="/" className="navbar_link">Home</a>
-        <a href="/cachorros" className="navbar_link">Cachorros</a>
-        <a href="/favoritos" className="navbar_link">Favoritos</a>
+        <a href="/" className="navbar_link">
+          Home
+        </a>
+        <a href="/cachorros" className="navbar_link">
+          Cachorros
+        </a>
+        <a href="/favoritos" className="navbar_link">
+          Favoritos
+        </a>
+        <a href="/buscar" className="navbar_link">
+          Buscar
+        </a>
       </div>
     </nav>
   );
