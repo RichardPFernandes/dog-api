@@ -5,12 +5,18 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Navbar from './components/navbar/Navbar.jsx'
 import Cachorros from './pages/cachorros/cachorros.jsx'
+import Favoritos from './pages/favoritos/favoritos.jsx'
 import Buscar from './pages/buscar/Buscar.jsx'
+
 
 const router = createBrowserRouter([
   { 
     path: '/',
     element: <App />
+  },
+  { 
+    path: '/favoritos',
+    element: <Favoritos />
   },
   {
     path: '/cachorros',
