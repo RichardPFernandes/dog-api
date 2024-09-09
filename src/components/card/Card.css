@@ -28,6 +28,11 @@
   background-color: white;
   margin-left: 73%;
   margin-bottom: 90%;
+  border: none;
+}
+
+.coracao:hover {
+  cursor: pointer;
 }
 
 .cachorro:hover {
