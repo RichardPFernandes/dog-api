@@ -16,7 +16,7 @@ function App() {
         <p>
           Você pode ver fotos de cachorros, adicionar cachorros aos favoritos e muito mais.
         </p>
-        <button className="app_button">Clique aqui para começar</button>
+        <button className="app_button" onClick={() => window.location.href = '/cachorros'}>Clique aqui para começar</button>
       </main>
     </div>
   )
