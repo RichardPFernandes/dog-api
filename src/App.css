@@ -39,9 +39,10 @@
   text-decoration: none;
   margin-top: 40px;
   width: 200px;
-  padding: 10px;
+  padding: 20px;
   border-radius: 5px;
   border: none;
+  font-size: 13px;
 }
 
 .app_button:hover {
