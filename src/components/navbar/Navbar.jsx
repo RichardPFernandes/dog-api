@@ -22,6 +22,9 @@ export default function Navbar() {
         <a href="/buscar" className="navbar_link">
           Buscar
         </a>
+        <a href="/login" className="navbar_link navbar_button">
+          Login
+        </a>
       </div>
     </nav>
   );

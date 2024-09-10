@@ -9,6 +9,7 @@ export default function DogApiService() {
   }
 
   async function buscarRaca(raca) {
+    raca
     const response = await fetch(url + `breeds/search?q=${raca}`);
     const data = await response.json();
     return data;
@@ -16,6 +17,19 @@ export default function DogApiService() {
 
   async function buscarImagem(imageId) {
     const response = await fetch(`https://api.thedogapi.com/v1/images/${imageId}`);
+    const data = await response.json();
+    return data;
+  }
+
+  async function criarFavorito(favorito) {
+    const response = await fetch(url + `favourites?api_key=${apiKey}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(favorito)
+    });
+
     const data = await response.json();
     return data;
   }
