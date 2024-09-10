@@ -1,4 +1,3 @@
-import { BiSolidDownvote, BiSolidUpvote } from 'react-icons/bi'
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import './Card.css'
 import { useState } from 'react';
@@ -30,8 +29,7 @@ export default function Card({ cachorro }) {
         <p>Raça: {cachorro.name}</p>
       </div>
       <div className="cachorro_buttons">
-        <button><BiSolidUpvote /></button>
-        <button><BiSolidDownvote /></button>
+        <button className='descricao' onClick={() => window.location.href = '/descricao'}>Detalhes</button>
       </div>
     </div>
   )

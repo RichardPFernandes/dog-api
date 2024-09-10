@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './cachorros.css'
 import Card from '../../components/card/Card'
 import DogApiService from '../../service/dogApi'
+
 export default function Cachorros() {
 
   const [cachorros, setCachorros] = useState([])

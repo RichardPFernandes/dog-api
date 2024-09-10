@@ -46,12 +46,10 @@
 
 .cachorro_buttons {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   height: 100px;
-  padding: 0 20px;
 }
 
 .cachorro_info {
@@ -61,8 +59,8 @@
   min-height: 320px;
 }
 
-.cachorro_buttons button {
-  width: 100px;
+.descricao {
+  width: 100%;
   height: 40px;
   border: none;
   border-radius: 10px;
@@ -73,7 +71,7 @@
   cursor: pointer;
 }
 
-.cachorro_buttons button:hover {
-  background-color: #527ba58f;
-  color: white;
+.descricao:hover {
+  background-color: #346ba38f;
+  color: rgb(245, 245, 245);
 }
