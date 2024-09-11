@@ -1,4 +1,3 @@
-import { BiSolidDownvote, BiSolidUpvote } from 'react-icons/bi'
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import './Card.css'
 import { useState } from 'react';
@@ -25,14 +24,6 @@ export default function Card({ cachorro }) {
         <img src={cachorro.image.url} alt={cachorro.name} />
         <p>Espectativa: {cachorro.life_span ? `${cachorro.life_span.split('year')[0]} anos` : 'Desconhecida'}</p>
         <p>Raça: {cachorro.name}</p>
-      </div>
-      <div className="cachorro_buttons">
-        <button>
-          <BiSolidUpvote />
-        </button>
-        <button>
-          <BiSolidDownvote />
-        </button>
       </div>
     </div>
   );

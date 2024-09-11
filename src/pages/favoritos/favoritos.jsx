@@ -1,4 +1,5 @@
 import './favoritos.css'
+
 export default function Favoritos() {
 
     return (

@@ -7,8 +7,6 @@ import Navbar from './components/navbar/Navbar.jsx'
 import Cachorros from './pages/cachorros/cachorros.jsx'
 import Favoritos from './pages/favoritos/favoritos.jsx'
 import Buscar from './pages/buscar/Buscar.jsx'
-import Login from './pages/login/Login.jsx'
-
 
 const router = createBrowserRouter([
   { 
@@ -22,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: '/cachorros',
     element: <Cachorros />
+  },
+  {
+    path: '/descricao',
+    element: <Descricao />
   },
   {
     path: '/buscar',
