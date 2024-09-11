@@ -7,8 +7,9 @@
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  padding: 0 20rem;
+  padding: 0 10rem;
   margin: 0;
+  z-index: 100;
 }
 
 .navbar_logo{
@@ -38,10 +39,11 @@
   width: 300px;
   min-width: 100px;
   height: 60px;
-  padding: 10px 100px;
+  padding: 10px 80px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 10px;
 }
 
 .navbar_link:hover{
@@ -54,6 +56,24 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 700px;
+  width: 50rem;
 } 
 
+.navbar_button {
+  background-color: #28517A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  width: 200px;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+  height: 40px;
+}
+
+.navbar_button:hover {
+  background-color: #527BA5;
+  cursor: pointer;
+}
