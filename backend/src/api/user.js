@@ -82,6 +82,32 @@ class UserApi {
             res.status(400).send({ error: e.message })
         }
     }
+
+    async bloquearUser(req, res) {
+        const { id } = req.params
+
+        const userLogged = await UserController.findUser(req?.session?.id || 0)
+
+        try {
+            await UserController.bloquear(Number(id), userLogged)
+            return res.status(204).send()
+        } catch (e) {
+            return res.status(400).send({ error: `Erro ao bloquear usuário ${e.message}`})
+        }
+    }
+
+    async desbloquearUser(req, res) {
+        const { id } = req.params
+
+        const userLogged = await UserController.findUser(req?.session?.id || 0)
+
+        try {
+            await UserController.desbloquear(Number(id), userLogged)
+            return res.status(204).send()
+        } catch (e) {
+            return res.status(400).send({ error: `Erro ao desbloquear usuário ${e.message}`})
+        }
+    }
 }
 
 module.exports = new UserApi()
