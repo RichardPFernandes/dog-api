@@ -103,6 +103,40 @@ class UserController {
       }
     }
   }
+
+  async bloquear(id, userLogged) {
+    if (id === undefined) {
+      throw new Error("Id é obrigatório.");
+    }
+
+    const usuario = await this.findUser(id);
+
+    if (userLogged && userLogged.role !== "admin") {
+      throw new Error("Sem permissão.");
+    }
+
+    usuario.bloqueado = true;
+    usuario.save();
+
+    return usuario;
+  }
+
+  async desbloquear(id, userLogged) {
+    if (id === undefined) {
+      throw new Error("Id é obrigatório.");
+    }
+
+    const usuario = await this.findUser(id);
+
+    if (userLogged && userLogged.role !== "admin") {
+      throw new Error("Sem permissão.");
+    }
+
+    usuario.bloqueado = false;
+    usuario.save();
+
+    return usuario;
+  }
 }
 
 module.exports = new UserController();
