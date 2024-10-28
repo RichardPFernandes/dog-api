@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './cachorros.css'
 import Card from '../../components/card/Card'
-import DogApiService from '../../service/dogApi'
+import { getDogs } from '../../api/dog'
 import Button from '../../components/Button/Button'
 
 export default function Cachorros() {
@@ -9,11 +9,11 @@ export default function Cachorros() {
   const [cachorros, setCachorros] = useState([])
 
   useEffect(() => {
-    DogApiService()
-      .getCachorros()
-      .then(data => {
-        setCachorros(data)
-      })
+    const fetchCachorros = async () => {
+      const cachorros = await getDogs();
+      setCachorros(cachorros);
+    } 
+    fetchCachorros()
   }, [])
     return (
       <div className="cachorros">
