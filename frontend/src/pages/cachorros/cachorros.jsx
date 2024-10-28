@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './cachorros.css'
 import Card from '../../components/card/Card'
 import DogApiService from '../../service/dogApi'
+import Button from '../../components/Button/Button'
 
 export default function Cachorros() {
 
@@ -18,7 +19,7 @@ export default function Cachorros() {
       <div className="cachorros">
         <main className="cachorros_main">
           {cachorros.map(cachorro => (
-            <Card key={cachorro.id} cachorro={cachorro} />
+            <><Card key={cachorro.id} cachorro={cachorro} /><Button /></>
           ))}
         </main>
       </div>
