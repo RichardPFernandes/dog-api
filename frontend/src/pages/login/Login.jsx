@@ -30,9 +30,21 @@ export default function Login() {
         <h1>Login</h1>
         <form>
           <label htmlFor="email">Email</label>
-          <input className="email" type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            className="email"
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <InputSenha senha={senha} setSenha={setSenha} />
-          <button type="submit" onClick={handleLogin}>Entrar</button>
+          <button type="submit" onClick={handleLogin}>
+            Entrar
+          </button>
+          <a className="cadastrar" href="/cadastro">
+            Cadastre-se
+          </a>
         </form>
       </div>
     </div>

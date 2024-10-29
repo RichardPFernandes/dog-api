@@ -1,4 +1,4 @@
-.login {
+.cadastro {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,9 +8,9 @@
     color: #1e4b7a; 
 }
 
-.login_container {
+.cadastro_container {
     width: 380px;
-    height: 400px;
+    height: 500px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -22,37 +22,37 @@
     border-width: 2px;
   }
 
-.login form {
+.cadastro form {
     width: 300px;
     padding: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.login form input {
+.cadastro form input {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.login form input:focus {
+.cadastro form input:focus {
     outline: none;
     border-color: #527BA5;
 }
 
-.login form button {
+.cadastro form button {
     padding: 10px;
     background-color: #28517A;
     color: #fff;
     border: none;
-    font-size: 15px;
     border-radius: 5px;
+    font-size: 15px;
     cursor: pointer;
     margin-top: 10px;
 }
 
-.login form button:hover {
+.cadastro form button:hover {
     background-color: #527BA5;
 }
 
@@ -68,13 +68,21 @@
     bottom: 38px;
     cursor: pointer;
 }
-.cadastrar {
-    text-decoration: none;
-    font-size: 15px;
+.voltar {
+    padding: 5px;
+    background-color: #b4b4b4;
     text-align: center;
-    margin-top: 6px;
-    color: #305274;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 15px;
 }
-.cadastrar:hover {
-    color: #527BA5;
+.voltar:hover {
+    background-color: #ccc;
+}
+.senha{
+    height: 40px;
 }
