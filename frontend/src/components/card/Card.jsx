@@ -21,9 +21,9 @@ export default function Card({ cachorro }) {
           {favorito ? <FaHeart color="red" /> : <FaRegHeart color="red" />}
         </button>
 
-        <img src={cachorro.image.url} alt={cachorro.name} />
-        <p>Espectativa: {cachorro.life_span ? `${cachorro.life_span.split('year')[0]} anos` : 'Desconhecida'}</p>
-        <p>Raça: {cachorro.name}</p>
+        <img src={cachorro.url_imagem} alt={cachorro.name} />
+        <p>Espectativa: {cachorro.expec_vida ? `${cachorro.expec_vida.split('year')[0]} anos` : 'Desconhecida'}</p>
+        <p>Raça: {cachorro.raca}</p>
       </div>
     </div>
   );
