@@ -8,32 +8,40 @@ import Cachorros from './pages/cachorros/cachorros.jsx'
 import Favoritos from './pages/favoritos/favoritos.jsx'
 import Login from './pages/login/Login.jsx'
 import Buscar from './pages/buscar/Buscar.jsx'
+import Cadastro from './pages/cadastro/Cadastro.jsx'
+import { AuthProvider } from './auth/Context.jsx'
 
 const router = createBrowserRouter([
-  { 
-    path: '/',
-    element: <App />
-  },
-  { 
-    path: '/favoritos',
-    element: <Favoritos />
+  {
+    path: "/",
+    element: <App />,
   },
   {
-    path: '/cachorros',
-    element: <Cachorros />
+    path: "/favoritos",
+    element: <Favoritos />,
   },
   {
-    path: '/buscar',
-    element: <Buscar />
+    path: "/cachorros",
+    element: <Cachorros />,
   },
   {
-    path: '/login',
-    element: <Login />
+    path: "/buscar",
+    element: <Buscar />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/cadastro",
+    element: <Cadastro />,
   }
-])
+]);
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Navbar />
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <Navbar />
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 )
