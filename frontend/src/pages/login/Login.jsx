@@ -1,18 +1,25 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './Login.css'
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import InputSenha from '../../components/input-senha/InputSenha';
 import { loginUser } from '../../api/user';
+import { AuthContext } from '../../auth/Context';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const login = async (e) => {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await loginUser(email, senha);
-      console.log(response);
+      if (response.token) {
+        login(response.token);
+        return navigate('/');
+      }
     } catch (error) {
       console.error(error);
     }
@@ -25,7 +32,7 @@ export default function Login() {
           <label htmlFor="email">Email</label>
           <input className="email" type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <InputSenha senha={senha} setSenha={setSenha} />
-          <button type="submit" onClick={login}>Entrar</button>
+          <button type="submit" onClick={handleLogin}>Entrar</button>
         </form>
       </div>
     </div>

@@ -8,6 +8,7 @@ import Cachorros from './pages/cachorros/cachorros.jsx'
 import Favoritos from './pages/favoritos/favoritos.jsx'
 import Login from './pages/login/Login.jsx'
 import Buscar from './pages/buscar/Buscar.jsx'
+import { AuthProvider } from './auth/Context.jsx'
 
 const router = createBrowserRouter([
   { 
@@ -33,7 +34,9 @@ const router = createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Navbar />
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <Navbar />
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 )

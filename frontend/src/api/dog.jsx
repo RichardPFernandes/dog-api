@@ -15,7 +15,12 @@ export const getDogById = async (id) => {
 };
 
 export const createDog = async (dog) => {
-  const response = await api.post("/api/v1/dog", dog);
+  const token = localStorage.getItem("token");
+  const response = await api.post("/api/v1/dog", dog, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
