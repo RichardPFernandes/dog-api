@@ -10,6 +10,7 @@ import Login from './pages/login/Login.jsx'
 import Buscar from './pages/buscar/Buscar.jsx'
 import Cadastro from './pages/cadastro/Cadastro.jsx'
 import { AuthProvider } from './auth/Context.jsx'
+import { ToastProvider } from './components/toast/ToastContext.jsx'
 
 const router = createBrowserRouter([
   {
@@ -40,8 +41,10 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <Navbar />
-      <RouterProvider router={router} />
+        <ToastProvider>
+         <Navbar />
+          <RouterProvider router={router} />
+        </ToastProvider>
     </AuthProvider>
   </StrictMode>
 )

@@ -7,11 +7,9 @@ class Database {
 
   init() {
     this.db = new Sequelize({
-      database: "dogapi",
-      host: "localhost",
-      username: "root",
-      dialect: "mysql",
-      password: "",
+      dialect: "sqlite",
+      storage: ":memory:",
+      logging: true,
     });
   }
 }

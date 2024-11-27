@@ -36,3 +36,4 @@ export const loginUser = async (email, senha) => {
   });
   return response.data;
 };
+
