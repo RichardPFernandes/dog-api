@@ -1,10 +1,17 @@
-import React, { useState } from "react";
-import "../UserTable/UserTable.css"
+import React, { useState, useEffect } from "react";
+import "../UserTable/UserTable.css";
 import "../UserForm/UserForm.css";
+import { createUser, updateUser } from "../../api/user";
 
-const UserForm = ({ onSubmit, initialData, onCancel }) => {
+const UserForm = ({ initialData, onCancel, fetchUsers }) => {
   const [user, setUser] = useState(
-    initialData || { nome: "", email: "", role: "viewer", bloqueado: false }
+    initialData || {
+      nome: "",
+      email: "",
+      role: "viewer",
+      senha: "",
+      bloqueado: false,
+    }
   );
 
   const handleChange = (e) => {
@@ -12,19 +19,31 @@ const UserForm = ({ onSubmit, initialData, onCancel }) => {
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(user);
+
+    if (!user.id) {
+      await createUser(user); 
+    } else {
+      await updateUser(initialData.id, user); 
+    }
+    fetchUsers();
   };
 
+  useEffect(() => {
+    if (initialData) {
+      setUser(initialData);
+    }
+  }, [initialData]);
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="user-register" onSubmit={handleSubmit}>
       <input
         type="text"
         name="nome"
         value={user.nome}
         onChange={handleChange}
-        placeholder="Name"
+        placeholder="Nome"
         required
       />
       <input
@@ -35,14 +54,25 @@ const UserForm = ({ onSubmit, initialData, onCancel }) => {
         placeholder="Email"
         required
       />
+      <input
+        type="password"
+        name="senha"
+        value={user.senha}
+        onChange={handleChange}
+        placeholder="Senha"
+        required
+      />
       <select name="role" value={user.role} onChange={handleChange}>
         <option value="viewer">Viewer</option>
         <option value="admin">Admin</option>
       </select>
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>
-        Cancel
-      </button>
+
+      <div className="form-actions">
+        <button type="submit">Save</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

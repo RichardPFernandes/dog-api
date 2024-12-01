@@ -2,103 +2,67 @@ import React, { useState, useEffect } from "react";
 import UserForm from "../../components/UserForm/UserForm";
 import UserTable from "../../components/UserTable/UserTable";
 import "../painel-admin/PainelAdmin.css"
+import { blockUser, getUsers, unblockUser } from "../../api/user";
 
 const PainelAdmin = () => {
-  const [users, setUsers] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
+  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch("/api/users")
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.error("Error fetching users:", error));
-  }, []);
+    const fetchUsers = async () => {
+      try {
+        const data = await getUsers();
+        setUsers(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    useEffect(() => {
+      fetchUsers();
+    }, []); 
 
   const handleBlockToggle = async (id, bloqueado) => {
     try {
-      const response = await fetch(`/api/users/${id}/block`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bloqueado }),
-      });
-      if (response.ok) {
-        setUsers((prev) =>
-          prev.map((user) => (user.id === id ? { ...user, bloqueado } : user))
-        );
+      if (bloqueado) {
+        unblockUser(id);
+      } else {
+        blockUser(id);
       }
+      fetchUsers();
     } catch (error) {
       console.error("Error updating user:", error);
-    }
-  };
-
-  const handleCreateUser = async (newUser) => {
-    try {
-      const response = await fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser),
-      });
-      const createdUser = await response.json();
-      setUsers((prev) => [...prev, createdUser]);
-    } catch (error) {
-      console.error("Error creating user:", error);
     }
   };
 
   const handleEditUser = (user) => {
-    setEditingUser(user);
+    setEditingUser({
+      id: user.id,
+      nome: user.nome,
+      email: user.email,
+      role: user.role
+    });
     setIsEditing(true);
-  };
-
-  const handleUpdateUser = async (updatedUser) => {
-    try {
-      const response = await fetch(`/api/users/${updatedUser.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedUser),
-      });
-      if (response.ok) {
-        setUsers((prev) =>
-          prev.map((user) => (user.id === updatedUser.id ? updatedUser : user))
-        );
-        setIsEditing(false);
-        setEditingUser(null);
-      }
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
-  };
-
-  const handleDeleteUser = async (id) => {
-    try {
-      const response = await fetch(`/api/users/${id}`, { method: "DELETE" });
-      if (response.ok) {
-        setUsers((prev) => prev.filter((user) => user.id !== id));
-      }
-    } catch (error) {
-      console.error("Error deleting user:", error);
-    }
   };
 
   return (
     <div>
       <main className="admin-panel">
-        <h2>Manage Users</h2>
+        <h2>Painel de Administrador</h2>
         {!isEditing ? (
-          <UserForm onSubmit={handleCreateUser} />
+          <UserForm fetchUsers={fetchUsers} />
         ) : (
           <UserForm
-            onSubmit={handleUpdateUser}
             initialData={editingUser}
+            fetchUsers={fetchUsers}
             onCancel={() => setIsEditing(false)}
           />
         )}
         <UserTable
           users={users}
           onBlockToggle={handleBlockToggle}
+          fetchUsers={fetchUsers}
           onEdit={handleEditUser}
-          onDelete={handleDeleteUser}
         />
       </main>
     </div>

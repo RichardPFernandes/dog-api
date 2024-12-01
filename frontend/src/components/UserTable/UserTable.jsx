@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getUsers, deleteUser, updateUser } from "../../api/user"; // Importando os serviços
 
-const UserTable = ({ users, onBlockToggle, onEdit, onDelete }) => {
+const UserTable = ({ onBlockToggle, onEdit, users, fetchUsers }) => {
+
+
+  const handleDeleteUser = async (id) => {
+    try {
+      await deleteUser(id);
+      fetchUsers();
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
+
   return (
     <table className="user-table">
       <thead>
@@ -23,7 +35,7 @@ const UserTable = ({ users, onBlockToggle, onEdit, onDelete }) => {
             <td>{user.bloqueado ? "Yes" : "No"}</td>
             <td>
               <button
-                onClick={() => onBlockToggle(user.id, !user.bloqueado)}
+                onClick={() => onBlockToggle(user.id, user.bloqueado)}
                 style={{
                   backgroundColor: user.bloqueado ? "green" : "red",
                   color: "white",
@@ -33,8 +45,8 @@ const UserTable = ({ users, onBlockToggle, onEdit, onDelete }) => {
               </button>
               <button onClick={() => onEdit(user)}>Edit</button>
               <button
-                onClick={() => onDelete(user.id)}
-                style={{ color: "red" }}
+                onClick={() => handleDeleteUser(user.id)}
+                style={{ color: "red", backgroundColor: "white" }}
               >
                 Delete
               </button>
