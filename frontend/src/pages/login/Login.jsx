@@ -20,10 +20,10 @@ export default function Login() {
       const response = await loginUser(email, senha);
       if (response.token) {
         login(response.token);
-        showToast("Login realizado com sucesso!", "success"); // Exibe sucesso
+        showToast("Login realizado com sucesso!", "success");
         return navigate("/");
       } else if (response.message) {
-        showToast(response.message, "error"); // Exibe erro
+        showToast(response.message, "error");
       }
     } catch (error) {
       showToast(

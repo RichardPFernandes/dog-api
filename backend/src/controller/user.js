@@ -28,9 +28,8 @@ class UserController {
     if (id === undefined) {
       throw new Error("Id é obrigatório.");
     }
-
     const userValue = await user.findByPk(id);
-
+    
     if (!userValue) {
       throw new Error("Usuário não encontrado.");
     }
@@ -92,7 +91,9 @@ class UserController {
       throw new Error("[2] Usuário e senha inválidos.");
     }
 
-    return jwt.sign({ id: userValue.id }, SECRET_KEY, { expiresIn: 60 * 60 });
+    console.log(userValue.role);
+
+    return jwt.sign({ id: userValue.id, role: userValue.role }, SECRET_KEY, { expiresIn: 60 * 60 });
   }
 
   async verificaEmail(email, id) {
