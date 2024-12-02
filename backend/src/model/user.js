@@ -47,7 +47,7 @@ class User {
 
         await this.model.create({
           nome: "Admin",
-          email: "admin@example.com",
+          email: "admin@gmail.com",
           senha: hashedPassword, 
           role: "admin",
         });

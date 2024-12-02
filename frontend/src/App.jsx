@@ -12,7 +12,7 @@ function App() {
 
   const comecar = () => {
     if (token != null) {
-      navigate('/cachorros')
+      navigate('/cachorros');
     } else {
       showToast('Necessário estar logado para acessar', "error");
     }
