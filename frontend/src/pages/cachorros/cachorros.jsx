@@ -26,6 +26,9 @@ export default function Cachorros() {
   }, []);
 
   const openModal = (cachorro) => {
+    if (role !== 'admin') {
+      return;
+    }
     setSelectedDog(cachorro);
     setRaca(cachorro.raca);
     setUrlImagem(cachorro.url_imagem);
