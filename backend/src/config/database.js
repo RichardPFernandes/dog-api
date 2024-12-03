@@ -1,5 +1,5 @@
 const { Sequelize } = require("sequelize");
-
+require('dotenv').config()
 class Database {
   constructor() {
     this.init();
@@ -7,11 +7,17 @@ class Database {
 
   init() {
     this.db = new Sequelize({
-      database: "dogapi",
-      host: "localhost",
-      username: "root",
-      dialect: "mysql",
-      password: "",
+      database: process.env.DB_DATABASE,
+      host: process.env.DB_HOST,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      dialect: process.env.DB_DIALECT,
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false
+        }
+      }
     });
   }
 }

@@ -36,3 +36,14 @@ export const loginUser = async (email, senha) => {
   });
   return response.data;
 };
+
+export const blockUser = async (id) => {
+  const response = await api.post(`/api/v1/user/bloquear/${id}`);
+    return response.data;
+}
+
+export const unblockUser = async (id) => {
+  const response = await api.post(`/api/v1/user/desbloquear/${id}`);
+  return response.data;
+};
+

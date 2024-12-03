@@ -30,6 +30,7 @@ class DogController {
   }
 
   async findAll(page = 1) {
+    const fetch = (await import("node-fetch")).default; 
     try {
       const limit = 20;
       const offset = (page - 1) * limit;
@@ -48,9 +49,11 @@ class DogController {
         while (hasMore) {
           try {
             const response = await fetch(
-              `https://api.thedogapi.com/v1/breeds?page=${page}&limit=${limit}&api_key=live_XjiMXsal2iUDs26Um84wLBtGkMWl8tJbkOJPr4ZUEw7ppBP9ScLj907q4uRrdClj`,
+              `https://api.thedogapi.com/v1/breeds?page=${page}&limit=${limit}&api_key= live_0Vx6gFVYnf3ypYSI0rbs5uheXtikE4TrlI0x5aWpnbN0hcZKKqFdWs0PI58E1WT9 `,
               requestOptions
             );
+
+            console.log(response);
 
             if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
@@ -61,16 +64,24 @@ class DogController {
             if (!data?.info?.next) {
               hasMore = false;
             }
+
             console.log(data);
 
-            data.map((it) => {
-              dog.create({
-                id: it.id,
-                raca: it.name,
-                expec_vida: it.life_span,
-                url_imagem: it.image.url,
-              });
-            });
+            for (const it of data) {
+              // Verifica se o ID já existe antes de criar
+              const existingDog = await dog.findOne({ where: { id: it.id } });
+              if (!existingDog) {
+                await dog.create({
+                  id: it.id,
+                  raca: it.name,
+                  expec_vida: it.life_span,
+                  url_imagem: it.image.url,
+                });
+              } else {
+                console.log(`Dog with ID ${it.id} already exists. Skipping...`);
+              }
+            }
+
             page++;
           } catch (error) {
             hasMore = false;

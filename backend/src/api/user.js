@@ -24,12 +24,12 @@ class UserApi {
 
     async updateUser(req, res) {
         const { id } = req.params
-        const { nome, email, senha } = req.body
+        const { nome, email, senha, role } = req.body
 
         const userLogged = await UserController.findUser(req?.session?.id || 0)
 
         try {
-            const user = await UserController.update(Number(id), nome, email, senha, userLogged)
+            const user = await UserController.update(Number(id), nome, email, senha, userLogged, role)
             return res.status(200).send(user)
         } catch (e) {
             return res.status(400).send({ error: `Erro ao alterar usuário ${e.message}`})
@@ -73,7 +73,6 @@ class UserApi {
 
     async login(req, res) {
         const { email, senha } = req.body
-        console.log(req.body)
         try {
             const token = await UserController.login(email, senha)
 

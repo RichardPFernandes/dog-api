@@ -1,5 +1,5 @@
 import React from 'react';
-import './Modal.css';
+import './modal.css';
 
 export default function Modal({
   isOpen,
@@ -13,8 +13,8 @@ export default function Modal({
   isEditing,
   cardId
 }) {
+  
   if (!isOpen) return null;
-
   return (
     <div className="modal">
       <div className="modal-content">

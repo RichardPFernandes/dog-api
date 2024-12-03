@@ -1,0 +1,41 @@
+.user-register {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.user-register input,
+.user-register select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.user-register button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.user-register button:hover {
+  background-color: #0056b3;
+}
+
+.user-register button[type="button"] {
+  background-color: #dc3545;
+}
+
+.user-register button[type="button"]:hover {
+  background-color: #c82333;
+}
