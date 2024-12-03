@@ -1,17 +1,12 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import './Card.css'
 import { useState } from 'react';
-import DogApiService from '../../service/dogApi';
 
 export default function Card({ cachorro }) {
   const [favorito, setFavorito] = useState(cachorro.favorito);
   console.log(cachorro)
   function adicionarFavorito() {
     setFavorito(!favorito)
-    DogApiService().criarFavorito({
-      image_id: cachorro.image.id,
-      sub_id: 'user-1234'
-    })
   }
 
   return (

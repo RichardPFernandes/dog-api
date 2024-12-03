@@ -1,11 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const database = require("./config/database");
+require('dotenv').config;
 
 const UserApi = require("./api/user");
 const UserRouter = require("./routes/user");
 const DogRouter = require("./routes/dog");
 const authMiddleware = require("./middleware/authMiddleware");
+const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(express.json());
@@ -26,7 +28,7 @@ database.db
   .sync({ force: false })
   .then((_) => {
     if (!process.env.TEST) {
-      app.listen(3000, (_) => {
+      app.listen(port, (_) => {
         console.log("Server running on port 3000");
       });
     }

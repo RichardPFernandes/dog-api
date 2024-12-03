@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './cachorros.css';
 import Card from '../../components/card/Card';
 import { deleteDog, getDogs, updateDog } from '../../api/dog';
 import Button from '../../components/Button/Button';
 import Modal from '../../components/modal/modal';
+import { AuthContext } from '../../auth/Context';
 
 export default function Cachorros() {
   const [cachorros, setCachorros] = useState([]);
@@ -13,6 +14,7 @@ export default function Cachorros() {
   const [urlImagem, setUrlImagem] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [cardId, setCardId] = useState('');
+  const { role } = useContext(AuthContext);
 
   const fetchCachorros = async () => {
     const cachorrosResponse = await getDogs();
@@ -24,6 +26,9 @@ export default function Cachorros() {
   }, []);
 
   const openModal = (cachorro) => {
+    if (role !== 'admin') {
+      return;
+    }
     setSelectedDog(cachorro);
     setRaca(cachorro.raca);
     setUrlImagem(cachorro.url_imagem);
@@ -62,7 +67,7 @@ export default function Cachorros() {
             <Card cachorro={cachorro} />
           </div>
         ))}
-        <Button onChange={fetchCachorros}/>
+        {role === 'admin' && (<Button onChange={fetchCachorros} />)}
       </main>
 
       <Modal

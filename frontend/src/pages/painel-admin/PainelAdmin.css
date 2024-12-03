@@ -1,0 +1,13 @@
+.admin-panel {
+  padding: 5rem 20px;
+  font-family: Arial, sans-serif;
+}
+
+.admin-panel h2 {
+  text-align: center;
+  color: #333;
+}
+
+.admin-panel .user-table {
+  margin-top: 20px;
+}

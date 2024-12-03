@@ -1,29 +1,39 @@
-import { useState, useContext } from 'react';
-import './Login.css'
-import InputSenha from '../../components/input-senha/InputSenha';
-import { loginUser } from '../../api/user';
-import { AuthContext } from '../../auth/Context';
-import { useNavigate } from 'react-router-dom';
+import { useState, useContext } from "react";
+import "./Login.css";
+import InputSenha from "../../components/input-senha/InputSenha";
+import { loginUser } from "../../api/user";
+import { AuthContext } from "../../auth/Context";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "../../components/toast/ToastContext";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const { showToast } = useToast();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       const response = await loginUser(email, senha);
       if (response.token) {
         login(response.token);
-        return navigate('/');
+        showToast("Login realizado com sucesso!", "success");
+        return navigate("/");
+      } else if (response.message) {
+        showToast(response.message, "error");
       }
     } catch (error) {
-      console.error(error);
+      showToast(
+        error.response?.data?.error ||
+          "Erro ao fazer login. Tente novamente.",
+        "error"
+      );
     }
-  }
+  };
+
   return (
     <div className="login">
       <div className="login_container">
@@ -42,9 +52,9 @@ export default function Login() {
           <button type="submit" onClick={handleLogin}>
             Entrar
           </button>
-          <a className="cadastrar" href="/cadastro">
+          <Link className="cadastrar" to="/cadastro">
             Cadastre-se
-          </a>
+          </Link>
         </form>
       </div>
     </div>
